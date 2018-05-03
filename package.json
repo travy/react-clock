@@ -1,0 +1,37 @@
+{
+  "name": "react-clock",
+  "version": "1.0.0",
+  "description": "An analog clock which displays in a users web browser",
+  "main": "index.js",
+  "scripts": {
+    "dev": "./node_modules/.bin/webpack --config webpack.config.js --mode=development",
+    "prod": "./node_modules/.bin/webpack --config webpack.config.js --mode=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/travy/react-clock.git"
+  },
+  "keywords": [
+    "react.js"
+  ],
+  "author": "Travis Anthony Torres <travis@travistorres.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/travy/react-clock/issues"
+  },
+  "homepage": "https://github.com/travy/react-clock#readme",
+  "babel": {
+    "presets": [
+      "react"
+    ]
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-react": "^6.24.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.1.2"
+  }
+}
