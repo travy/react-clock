@@ -1,29 +1,38 @@
-import React from "react";
 import PropTypes from "prop-types";
+import React from "react";
 import moment from "moment-timezone";
 
-import { DigitalClock } from "../Components/DigitalClock.jsx";
 import { AnalogClock } from "../Components/AnalogClock.jsx";
+import { DigitalClock } from "../Components/DigitalClock.jsx";
+import { OptionsButton } from "../Components/OptionsButton.jsx";
 
 export class ClockWidget extends React.Component {
     static get defaultProps() {
         return {
+            bodyClassName: 'card-body',
             clockNameClassName: 'clock-widget-name',
-            headerClassName: 'clock-widget-header',
+            footerClassName: 'card-footer',
+            headerClassName: 'clock-widget-header card-header',
             nameLabel: 'Clock Name',
+            optionsClassName: 'clock-widget-options pull-right',
+            optionsLabel: 'Options',
             timeUpdateInterval: 1000,
             timeZone: 'America/New_York',
             timeZoneClassName: 'clock-widget-tz',
             timeZoneLabel: 'Timezone',
-            widgetClassName: 'clock-widget'
+            widgetClassName: 'clock-widget card border-secondary'
         };
     }
 
     static get propTypes() {
         return {
+            bodyClassName: PropTypes.string,
             clockNameClassName: PropTypes.string,
+            footerClassName: PropTypes.string,
             headerClassName: PropTypes.string,
             nameLabel: PropTypes.string,
+            optionsClassName: PropTypes.string,
+            optionsLabel: PropTypes.string,
             timeUpdateInterval: PropTypes.positiveInteger,
             timeZone: PropTypes.string,
             timeZoneClassName: PropTypes.string,
@@ -55,11 +64,12 @@ export class ClockWidget extends React.Component {
      * set interval of time (defaults to 1 second).
      */
     setupTimer() {
-        if (this.timer !== null) {
-            return false;
+        let _this = this;
+        
+        if (_this.timer !== null) {
+            clearTimeout(_this.timer);
         }
 
-        let _this = this;
         _this.timer = setInterval(function () {
             _this.setState({
                 time: _this.getCurrentTime()
@@ -69,16 +79,33 @@ export class ClockWidget extends React.Component {
         return true;
     }
 
+    /**
+     * Displays a modal with information to change the timezone and name for
+     * the clock.
+     *
+     * @returns {undefined}
+     */
+    displayOptionsDialog() {
+        //  todo- implement modal logic
+        console.log('Display Options');
+    }
+
     render() {
         return (
             <div className={ this.props.widgetClassName }>
                 <div className={ this.props.headerClassName }>
+                    <OptionsButton clickHandler={ this.displayOptionsDialog } />
                     <h2 className={ this.props.clockNameClassName }>{ this.props.nameLabel }</h2>
-                    <h3 className={ this.props.timeZoneClassName }>{ this.props.timeZoneLabel }</h3>
                 </div>
-
-                <AnalogClock time={ this.state.time } />
-                <DigitalClock time={ this.state.time } />
+                <div className={ this.props.bodyClassName }>
+                    <AnalogClock time={ this.state.time } />
+                    <DigitalClock time={ this.state.time } />
+                </div>
+                <div className={ this.props.footerClassName }>
+                    <span className={ this.props.timeZoneClassName }>
+                        { this.props.timeZoneLabel }
+                    </span>
+                </div>
             </div>
         );
     }

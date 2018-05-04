@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 
 const HAND_HOURS = 0x00;
 const HAND_MINUTES = 0x01;
