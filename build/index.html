@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <style type="text/css">
+            
+            .dial {
+              position: relative;
+              top: 0;
+              width: 200px;
+              height: 200px;
+              left: 0;
+              border-color: black;
+              border-style: solid;
+              border-radius: 150px;
+              box-sizing: border-box;
+            }
+
+            .hand {
+              position: absolute;
+              box-sizing: border-box;
+              top: 97px;
+              left: 100px;
+              border-width: 1px;
+              border-style: solid;
+              width: 20%;
+              height: 6px;
+              transform-origin: 0% 0%;
+            }
+
+            .hour-hand {
+              border-color: grey;
+              background-color: grey;
+            }
+
+            .minute-hand {
+              border-color: red;
+              background-color: red;
+              width: 30%;
+            }
+
+            .second-hand {
+              border-color: green;
+              background-color: green;
+              width: 40%;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div id="app"></div>
+        
+        <script type="text/javascript" src="react-clock.js"></script>
+    </body>
+</html>
