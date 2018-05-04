@@ -1,6 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { Hello } from "./Components/Hello.jsx";
+import "./PropTypes/CustomPropTypes.js";
 
-ReactDOM.render(<Hello />, document.getElementById('app'));
+import { ClockWidget } from "./Widgets/ClockWidget.jsx";
+
+ReactDOM.render(
+        <div>
+            <ClockWidget nameLabel="New York" timeZoneLabel="Eastern Time" />
+            <ClockWidget nameLabel="Los Angeles" timeZoneLabel="Pacific Time"
+                    timeZone="America/Los_Angeles"/>
+        </div>
+        , document.getElementById('app'));
