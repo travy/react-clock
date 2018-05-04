@@ -4,6 +4,7 @@ import React from 'react';
 const HAND_HOURS = 0x00;
 const HAND_MINUTES = 0x01;
 const HAND_SECONDS = 0x02;
+const HAND_INVALID_MSG = 'An invalid value was passed to identify one of the hands for the analog clock';
 
 const ANALOG_CLOCK_TOTAL_HOURS = 12;
 const ANALOG_CLOCK_TOTAL_MINUTES = 60;
@@ -69,11 +70,11 @@ export class AnalogClock extends React.Component {
             interval = ANALOG_CLOCK_TOTAL_SECONDS;
             valuePosition = 6;
         } else {
-            throw new Error('An invalid value was passed to identify one of the hands for the analog clock');
+            throw new Error(HAND_INVALID_MSG);
         }
 
-        let valueOfHand = this.props.time.substring(valuePosition, valuePosition + 2);
-        return this.moveHand(valueOfHand, interval);
+        let handValue = this.props.time.substring(valuePosition, valuePosition + 2);
+        return this.moveHand(handValue, interval);
     }
 
     /**
@@ -85,9 +86,9 @@ export class AnalogClock extends React.Component {
     getAngles() {
         let _this = this;
         return {
-            hours: _this.getAngleFor(HAND_HOURS, ANALOG_CLOCK_TOTAL_HOURS),
-            minutes: _this.getAngleFor(HAND_MINUTES, ANALOG_CLOCK_TOTAL_MINUTES),
-            seconds: _this.getAngleFor(HAND_SECONDS, ANALOG_CLOCK_TOTAL_SECONDS)
+            hours: _this.getAngleFor(HAND_HOURS),
+            minutes: _this.getAngleFor(HAND_MINUTES),
+            seconds: _this.getAngleFor(HAND_SECONDS)
         };
     }
 
